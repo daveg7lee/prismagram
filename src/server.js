@@ -1,6 +1,8 @@
 require("dotenv").config;
 import { GraphQLServer } from "graphql-yoga";
 
+const PORT = process.env.PORT || 4000;
+
 const typeDefs = `
     type Query {
         hello: String!
@@ -8,7 +10,13 @@ const typeDefs = `
 `;
 
 const resolvers = {
-    hello = () => "Hi"
-}
+  Query: {
+    hello: () => "Hi",
+  },
+};
 
-const sever = new GraphQLServer({ typeDefs, resolvers });
+const server = new GraphQLServer({ typeDefs, resolvers });
+
+server.start({ port: PORT }, () =>
+  console.log(`server running on port http://localhost${PORT}`)
+);
