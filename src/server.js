@@ -1,18 +1,21 @@
-import dotenv from "dotenv";
-import path from "path";
+import "./env";
 import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import schema from "./schema";
-import { sendSecretMail } from "./utils";
-
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+import "./passport";
+import { authenticateJWT } from "./passport";
+import { prisma } from "../generated/prisma-client";
 
 const PORT = process.env.PORT || 4000;
 
-const server = new GraphQLServer({ schema });
+const server = new GraphQLServer({
+  schema,
+  context: ({ request }) => ({ request }),
+});
 
 server.express.use(logger("dev"));
+server.express.use(authenticateJWT);
 
 server.start({ port: PORT }, () =>
-  console.log(`server running on port http://localhost${PORT}`)
+  console.log(`server running on port http://localhost${PORT} `)
 );
