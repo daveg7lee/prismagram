@@ -4,7 +4,6 @@ import logger from "morgan";
 import schema from "./schema";
 import "./passport";
 import { authenticateJWT } from "./passport";
-import { prisma } from "../generated/prisma-client";
 
 const PORT = process.env.PORT || 4000;
 
@@ -17,5 +16,5 @@ server.express.use(logger("dev"));
 server.express.use(authenticateJWT);
 
 server.start({ port: PORT }, () =>
-  console.log(`server running on port http://localhost${PORT} `)
+  console.log(`server running on port http://localhost:${PORT} `)
 );
