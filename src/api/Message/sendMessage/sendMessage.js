@@ -17,11 +17,12 @@ export default {
         }
       } else {
         room = await prisma.room({ id: roomId });
-        if (!room) {
-          throw Error("Room not found");
-        }
       }
-      const getTo = room.participants.filter(
+      if (!room) {
+        throw Error("Room not found");
+      }
+      const participants = await prisma.room({ id: room.id }).participants();
+      const getTo = participants.filter(
         (participant) => participant.id !== user.id
       )[0];
       return prisma.createMessage({

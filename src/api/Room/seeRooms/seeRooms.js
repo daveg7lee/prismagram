@@ -7,7 +7,7 @@ export default {
       const { user } = request;
       return prisma.rooms({
         where: {
-          participant_some: {
+          participants_some: {
             id: user.id,
           },
         },
