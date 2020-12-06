@@ -19,7 +19,7 @@ Instagram clone with Express + Prisma +Reach and React Native
 - [x] See the full photo
 - [x] Upload a photo
 - [x] Edit the photo
-- [ ] Delete the photo
+- [x] Delete the photo
 - [ ] See the feed
 - [ ] Send Private Message
 - [ ] See Rooms
