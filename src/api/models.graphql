@@ -14,6 +14,7 @@ type User {
   followers: [User!]!
   followersCount: Int!
   posts: [Post!]!
+  postsCount: Int!
   likes: [Like!]!
   comments: [Comment!]!
   rooms: [Room!]!
@@ -21,6 +22,7 @@ type User {
   createdAt: String
   updatedAt: String
 }
+
 type Post {
   id: ID!
   location: String
@@ -31,9 +33,11 @@ type Post {
   comments: [Comment!]!
   isLiked: Boolean!
   likeCount: Int!
+  commentCount: Int!
   createdAt: String
   updatedAt: String
 }
+
 type Like {
   id: ID!
   user: User!
@@ -41,6 +45,7 @@ type Like {
   createdAt: String
   updatedAt: String
 }
+
 type Comment {
   id: ID!
   text: String!
@@ -49,6 +54,7 @@ type Comment {
   createdAt: String
   updatedAt: String
 }
+
 type File {
   id: ID!
   url: String!
@@ -56,6 +62,7 @@ type File {
   createdAt: String
   updatedAt: String
 }
+
 type Room {
   id: ID!
   participants: [User!]!
@@ -63,6 +70,7 @@ type Room {
   createdAt: String
   updatedAt: String
 }
+
 type Message {
   id: ID!
   text: String!
